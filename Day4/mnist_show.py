@@ -8,7 +8,7 @@ load_mnist(normalize=True, flatten=True, one_hot_label=False)
     flatten：是否展开输入图像（变成一维数组）
         False 输入图像为 1 × 28 × 28 的三维数组
         True 输入图像会保存为由 784 个元素构成的一维数组
-    one_hot_label: 是否将标签保存为 one-hot 表示(one-hot representation)
+    one_hot_label:pickle 是否将标签保存为 one-hot 表示(one-hot representation)
         True 表示是仅正确解标签为 1，其余皆为 0 的数组，就像 [0,0,1,0,0,0,0,0,0,0]
         False 只是像 7、2 这样简单保存正确解标签
 
