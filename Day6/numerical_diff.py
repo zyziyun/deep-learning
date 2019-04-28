@@ -23,19 +23,6 @@ def numerical_diff(f, x):
 def function_1(x):
     return 0.01*x**2 + 0.1*x
 
-
-x = np.arange(0.0, 20.0, 0.1) # 以0.1为单位，从0到20的数组x
-y = function_1(x)
-plt.xlabel("x")
-plt.ylabel("f(x)")
-plt.plot(x, y)
-
-
-# 计算一下函数在 x = 5 和 x = 10 处的导数( f(x) 相对于 x 的变化量，对应函数的斜率 )
-print(numerical_diff(function_1, 5)) # 0.1999999999990898
-print(numerical_diff(function_1, 10)) # 0.2999999999986347
-# 误差非常小
-
 # 画对应的切线
 def tangent_line(f, x):
     d = numerical_diff(f, x)
@@ -44,9 +31,41 @@ def tangent_line(f, x):
     return lambda t: d*t + y
 
 
-tf = tangent_line(function_1, 5)
-y2 = tf(x)
-y3 = tangent_line(function_1, 10)(x)
-plt.plot(x, y2)
-plt.plot(x, y3)
-plt.show()
+def function_2(x):
+    return x[0]**2 + x[1]**2 # np.sum(x**2) 也可以实现（图像是个三维图像）
+
+
+def function_tmp1(x0):
+    return x0*x0 + 4.0**2.0
+
+
+def function_tmp2(x1):
+    return 3.0 ** 2.0 + x1 * x1
+
+if __name__ == '__main__':
+    x = np.arange(0.0, 20.0, 0.1) # 以0.1为单位，从0到20的数组x
+    y = function_1(x)
+    plt.xlabel("x")
+    plt.ylabel("f(x)")
+    plt.plot(x, y)
+
+
+    # 计算一下函数在 x = 5 和 x = 10 处的导数( f(x) 相对于 x 的变化量，对应函数的斜率 )
+    print(numerical_diff(function_1, 5)) # 0.1999999999990898
+    print(numerical_diff(function_1, 10)) # 0.2999999999986347
+    # 误差非常小
+
+
+
+    tf = tangent_line(function_1, 5)
+    y2 = tf(x)
+    y3 = tangent_line(function_1, 10)(x)
+    plt.plot(x, y2)
+    plt.plot(x, y3)
+    plt.show()
+
+    # 求 x0=3，x1=4时，关于 x0 的偏导数
+    numerical_diff(function_tmp1, 3.0) #6.00000000000378
+
+    # 求 x0=3，x1=4 时，关于 x1 的偏导数
+    numerical_diff(function_tmp2, 4.0) #7.999999999999119
